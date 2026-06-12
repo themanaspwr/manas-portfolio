@@ -32,9 +32,6 @@ export const ResumeView: React.FC = () => {
 
         {/* 1. Core Profile summary */}
         <section className="bg-secondary/45 border border-text/10 rounded-lg p-5 theme-transition font-mono text-xs flex flex-col sm:flex-row gap-5 items-center sm:items-start">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border border-text/10 bg-primary/45 flex-shrink-0 shadow">
-            <img src="/pfp.png" alt="Manas Pawar" className="w-full h-full object-cover" />
-          </div>
           <div className="flex-1">
             <span className="text-accent-lime font-bold block mb-2">[SYS_SUMMARY.LOG]</span>
             <p className="text-text/75 leading-relaxed">
