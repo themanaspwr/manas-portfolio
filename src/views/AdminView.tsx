@@ -114,6 +114,9 @@ export const AdminView: React.FC = () => {
 
   // --- Password Gate ---
   if (!authed) {
+    const isSupabaseConfigured = !!(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
+    const isAdminPwConfigured = !!import.meta.env.VITE_ADMIN_PASSWORD;
+
     return (
       <main className="w-full min-h-screen flex items-center justify-center px-4">
         <motion.div
@@ -126,21 +129,35 @@ export const AdminView: React.FC = () => {
             <h2 className="text-sm font-bold text-text tracking-widest">ADMIN_ACCESS.EXE</h2>
           </div>
           <p className="text-[10px] text-text/40">Enter password to unlock the editor.</p>
+
+          {(!isSupabaseConfigured || !isAdminPwConfigured) && (
+            <div className="flex flex-col gap-2 p-3 bg-red-950/30 border border-red-500/20 rounded text-[9px] text-red-400 leading-normal">
+              <span className="font-bold flex items-center gap-1">
+                <AlertCircle size={10} className="text-red-400" /> SYSTEM CONFIGURATION ERROR:
+              </span>
+              {!isSupabaseConfigured && <div>• Supabase credentials are missing (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY)</div>}
+              {!isAdminPwConfigured && <div>• Admin password is missing (VITE_ADMIN_PASSWORD)</div>}
+              <div className="mt-1 text-text/50">Please add these environment variables in your Vercel Dashboard and deploy again.</div>
+            </div>
+          )}
+
           <form onSubmit={handleLogin} className="flex flex-col gap-3">
             <input
               type="password"
               value={pwInput}
               onChange={e => { setPwInput(e.target.value); setPwError(false); }}
               placeholder="Enter password..."
+              disabled={!isAdminPwConfigured}
               autoFocus
               className={`bg-primary border rounded py-2.5 px-3 text-xs text-text focus:outline-none transition-all ${
                 pwError ? 'border-red-500' : 'border-text/10 focus:border-accent-lime'
-              }`}
+              } disabled:opacity-40 disabled:cursor-not-allowed`}
             />
             {pwError && <p className="text-[9px] text-red-400">Incorrect password.</p>}
             <button
               type="submit"
-              className="bg-accent-lime text-primary font-bold text-xs py-2.5 rounded hover:bg-accent-lime/85 transition-all"
+              disabled={!isAdminPwConfigured}
+              className="bg-accent-lime text-primary font-bold text-xs py-2.5 rounded hover:bg-accent-lime/85 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
               UNLOCK →
             </button>
