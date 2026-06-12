@@ -12,6 +12,7 @@ import { BlogView } from './views/Blog';
 import { BuildLogsView } from './views/BuildLogsView';
 import { ResumeView } from './views/ResumeView';
 import { ContactView } from './views/ContactView';
+import { AdminView } from './views/AdminView';
 import { playClickSound } from './components/Header';
 
 export const App: React.FC = () => {
@@ -82,6 +83,7 @@ export const App: React.FC = () => {
         <Route path="/build-logs" element={<BuildLogsView />} />
         <Route path="/resume" element={<ResumeView />} />
         <Route path="/contact" element={<ContactView />} />
+        <Route path="/admin" element={<AdminView />} />
       </Routes>
     </div>
   );
