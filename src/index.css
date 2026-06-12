@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #101214; /* Architect's Atelier Primary Background */
+    --bg-secondary: #171A1E; /* Architect's Atelier Secondary Background */
+    --bg-elevated: #232830; /* Elevated Surface */
+    --bg-elevated-opacity: rgba(35, 40, 48, 0.45);
+    --bg-elevated-hover: rgba(35, 40, 48, 0.65);
+    --text-primary: #EDEDED; /* Primary Text */
+    --text-secondary: #8F959E; /* Secondary Text */
+    --accent-lime: #C67B3D; /* Burnished Copper */
+    --accent-orange: #95B39C; /* Sage Green */
+    --accent-mint: #F4EFE6; /* Champagne Ivory */
+    --accent-white: #F4EFE6; /* Champagne Ivory */
+    --border-hairline: rgba(244, 239, 230, 0.07); /* Champagne Ivory hairline border */
+    --grid-color: rgba(244, 239, 230, 0.018); /* Barely visible Champagne Ivory grid lines */
+    --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'General Sans', 'Satoshi', 'Inter Tight', 'Inter', sans-serif;
+    --blueprint-glow: rgba(198, 123, 61, 0.06); /* Soft copper lighting */
+    --shadow-panel: rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme='scientific-notebook'] {
+    --bg-primary: #FAF9F6; /* Premium Alabaster off-white */
+    --bg-secondary: #F3F1EC; /* Crisp warm sand panel */
+    --bg-elevated: #ECE9DF;
+    --bg-elevated-opacity: rgba(243, 241, 236, 0.75);
+    --bg-elevated-hover: rgba(243, 241, 236, 0.95);
+    --text-primary: #1C1E20; /* Dark slate charcoal */
+    --text-secondary: #606870;
+    --accent-lime: #B86B30; /* Premium Burnished Copper ink */
+    --accent-orange: #608069; /* Sage green ink */
+    --accent-mint: #1C1E20; /* Dark Charcoal */
+    --accent-white: #1C1E20;
+    --border-hairline: rgba(28, 30, 32, 0.08);
+    --grid-color: rgba(28, 30, 32, 0.028); /* Soft technical grid */
+    --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'General Sans', 'Satoshi', 'Inter Tight', 'Inter', sans-serif;
+    --blueprint-glow: rgba(184, 107, 48, 0.03);
+    --shadow-panel: rgba(28, 30, 32, 0.04);
+  }
+
+  [data-theme='midnight-terminal'] {
+    --bg-primary: #0A0B0C; /* Pitch dark canvas */
+    --bg-secondary: #121315; /* Dark gray panel */
+    --bg-elevated: #18191B;
+    --bg-elevated-opacity: rgba(22, 24, 27, 0.55);
+    --bg-elevated-hover: rgba(22, 24, 27, 0.75);
+    --text-primary: #EDEDED; /* Champagne text */
+    --text-secondary: #8F959E;
+    --accent-lime: #F4EFE6; /* Champagne Ivory */
+    --accent-orange: #8F959E; /* Muted gray */
+    --accent-mint: #FFFFFF;
+    --accent-white: #FFFFFF;
+    --border-hairline: rgba(255, 255, 255, 0.06);
+    --grid-color: rgba(255, 255, 255, 0.012); /* Faint gray grid */
+    --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'General Sans', 'Satoshi', 'Inter Tight', 'Inter', sans-serif;
+    --blueprint-glow: rgba(244, 239, 230, 0.02);
+    --shadow-panel: rgba(0, 0, 0, 0.35);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    transition: background-color 0.5s ease, color 0.3s ease;
+    overflow-x: hidden;
+    /* Apply subtle architectural paper grid pattern overlay */
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Headline overrides for elegant editorial headings */
+  h1, h2, h1.font-mono, h2.font-mono {
+    font-family: var(--font-heading) !important;
+    letter-spacing: -0.03em !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+  }
+
+  /* Custom scrollbar matching premium architectural layout */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-hairline);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-lime);
+  }
+}
+
+@layer utilities {
+  .theme-transition {
+    transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Blinking cursor */
+  .cursor-blink::after {
+    content: '█';
+    animation: blink 0.8s infinite steps(2, start);
+    color: var(--accent-lime);
+    margin-left: 2px;
+  }
+
+  /* Graph paper lines utility */
+  .bg-graph-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  }
+
+  .bg-graph-grid-fine {
+    background-size: 10px 10px;
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  }
+
+  /* Vintage notebook binding margin line */
+  .notebook-margin {
+    position: relative;
+    margin-left: 40px;
+    padding-left: 20px;
+  }
+
+  .notebook-margin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 2px double var(--accent-orange);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* Blueprint glow filter */
+  .blueprint-glow {
+    filter: drop-shadow(0 0 8px var(--blueprint-glow));
+  }
+}
+
+/* Premium Architectural Panels */
+.bg-secondary\/35, .bg-secondary\/45, .bg-secondary\/25, .bg-secondary\/80 {
+  background-color: var(--bg-elevated-opacity) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--border-hairline) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 24px var(--shadow-panel) !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bg-secondary\/35:hover, .bg-secondary\/45:hover, .bg-secondary\/25:hover {
+  background-color: var(--bg-elevated-hover) !important;
+  border-color: var(--accent-lime) !important; /* Elegant border illumination */
+  box-shadow: 0 6px 30px var(--blueprint-glow) !important;
+  transform: translateY(-1px);
+}
+
+/* Premium Primary Buttons (Burnished Copper Solid to Outline transition) */
+button.bg-accent-lime, a.bg-accent-lime {
+  background-color: var(--accent-lime) !important;
+  color: var(--bg-primary) !important;
+  border: 1px solid var(--accent-lime) !important;
+  font-family: var(--font-sans) !important;
+  letter-spacing: 0.05em;
+  font-weight: 600 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button.bg-accent-lime:hover, a.bg-accent-lime:hover {
+  background-color: transparent !important;
+  color: var(--accent-lime) !important;
+  border-color: var(--accent-lime) !important;
+  box-shadow: 0 4px 16px var(--blueprint-glow) !important;
+}
+
+/* Premium Secondary Buttons */
+button.border-text\/15, button.border-text\/20, button.border-text\/10,
+a.border-text\/15, a.border-text\/20, a.border-text\/10 {
+  border: 1px solid var(--border-hairline) !important;
+  background-color: rgba(35, 40, 48, 0.25) !important;
+  color: var(--text-primary) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button.border-text\/15:hover, button.border-text\/20:hover, button.border-text\/10:hover,
+a.border-text\/15:hover, a.border-text\/20:hover, a.border-text\/10:hover {
+  border-color: var(--accent-lime) !important;
+  color: var(--accent-lime) !important;
+  background-color: rgba(198, 123, 61, 0.04) !important;
+}
+
+/* Failsafe for button text contrast */
+.text-bg-primary {
+  color: var(--bg-primary) !important;
+}
+
+/* Elegant input elements styles */
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-hairline) !important;
+  border-radius: 4px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+  border-color: var(--accent-lime) !important;
+  box-shadow: 0 0 0 1px var(--accent-lime) !important;
+  outline: none !important;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* Layout Expansion: Use wide-screen dimensions for premium editorial feel */
+header.max-w-4xl,
+main .max-w-4xl,
+main .max-w-5xl {
+  max-width: 92% !important;
+  width: 100% !important;
+  transition: max-width 0.4s ease;
+}
+
+@media (min-width: 1024px) {
+  header.max-w-4xl {
+    max-width: 1200px !important;
+  }
+  main .max-w-4xl,
+  main .max-w-5xl {
+    max-width: 1200px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  header.max-w-4xl {
+    max-width: 1440px !important;
+  }
+  main .max-w-4xl,
+  main .max-w-5xl {
+    max-width: 1440px !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  header.max-w-4xl {
+    max-width: 1600px !important;
+  }
+  main .max-w-4xl,
+  main .max-w-5xl {
+    max-width: 1600px !important;
+  }
+}
+
+/* Typography Overrides: Increase legibility of small metadata and sub-heading texts */
+.text-\[8px\] {
+  font-size: 10px !important;
+}
+.text-\[9px\] {
+  font-size: 11px !important;
+}
+.text-\[10px\] {
+  font-size: 12px !important;
+}
+.text-xs {
+  font-size: 13px !important;
+}
+.text-\[11px\] {
+  font-size: 13px !important;
+}
+
+
+
