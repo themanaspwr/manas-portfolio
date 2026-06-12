@@ -162,6 +162,14 @@ export const ResumeView: React.FC = () => {
                   <div>
                     <h5 className="font-bold text-text text-[11px]">IBM IT Fundamentals</h5>
                     <p className="text-[9px] text-text/40">Credential Verification Program</p>
+                    <a
+                      href="https://www.credly.com/badges/ddb380a9-b797-4edb-b31c-6fa130d30c41"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[9px] text-accent-lime hover:text-accent-lime/70 transition-colors mt-0.5 inline-block"
+                    >
+                      View Credential →
+                    </a>
                   </div>
                 </li>
               </ul>
