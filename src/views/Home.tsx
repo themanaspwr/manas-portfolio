@@ -279,7 +279,8 @@ export const Home: React.FC = () => {
                     { name: 'AWS Cloud Engineering & Architecture', desc: 'Deploying multi-tier networks, IAM structures, and serverless stacks.', progress: 62 },
                     { name: 'Kubernetes & Container Orchestration', desc: 'Understanding cluster networks, persistent volumes, and deployment YAMLs.', progress: 48 },
                     { name: 'Data Science & Machine Learning Pipelines', desc: 'Structuring data cleansing pipelines, exploratory data analysis, and predictive models.', progress: 78 },
-                    { name: 'SQL & Query Optimization', desc: 'Writing complex queries, index optimizations, and relational database designs.', progress: 72 }
+                    { name: 'SQL & Query Optimization', desc: 'Writing complex queries, index optimizations, and relational database designs.', progress: 72 },
+                    { name: 'Business Analysis & Requirement Engineering', desc: 'Studying user stories, process modeling (BPMN), and requirement gathering techniques.', progress: 15 }
                   ].map((item) => (
                     <div key={item.name} className="flex flex-col gap-1.5 font-mono text-[9px]">
                       <div className="flex justify-between items-end gap-2">
